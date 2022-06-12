@@ -28,7 +28,7 @@ class Home extends StatelessWidget {
                             child: RichText(
                               text: TextSpan(
                                 text: 'Welcome to\nyour personal\nphysiotherapist',
-                                style: TextStyle(fontSize: 45.0, fontWeight: FontWeight.bold, color: Color(0xFF1F2F70), fontFamily: 'DMSans',),
+                                style: TextStyle(fontSize: 45.0, color: Color(0xFF1F2F70), fontFamily: 'DMSans',),
                               ),
                             ),
                           )
