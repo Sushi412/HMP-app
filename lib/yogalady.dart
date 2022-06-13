@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'YogaLady_Login_Register.dart';
 void main() => runApp(MaterialApp(
   home: Home(),
 ));
@@ -20,7 +20,7 @@ class Home extends StatelessWidget {
                       Image(
                         image: AssetImage('assets/YOGA LADY ILLUSTRATION.png'),
                         alignment: Alignment.topCenter,
-                        height: 450.0,
+                        height: 400.0,
                       ),
                       new Container(
                           padding: EdgeInsets.all(30),
@@ -42,11 +42,14 @@ class Home extends StatelessWidget {
           child: FloatingActionButton(
 
           backgroundColor: Color(0xFF1F2F70),
-    onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                new MaterialPageRoute(
+                  builder: (_)=> new TextImage()),);
+            },
             child: const Icon(Icons.arrow_forward,size: 37.0,),
     ),
-        ),
-    floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        )
     );
   }
 }
