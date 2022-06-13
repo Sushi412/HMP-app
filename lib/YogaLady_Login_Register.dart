@@ -15,53 +15,63 @@ class TextImageState extends State<TextImage> {
 
       body: Container(
         child: Center(
-          child: Column(
-            children: <Widget>[
-           new Image(
-              image: AssetImage('assets/YOGA LADY ILLUSTRATION.png'),
-             height: 400,
-          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 20.0, top: 0.0, right: 20.0, bottom: 20.0),
+            child: Column(
+              // crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+             new Image(
+                image: AssetImage('assets/YOGA LADY ILLUSTRATION.png'),
+               height: 400,
+            ),
 
-              new Container(
-                padding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 35.0),
-                child: new Center(
-                child: RichText(
-                text: TextSpan(
-                text: 'Welcome to\nyour personal\nphysiotherapist',
-                style: TextStyle(fontSize: 45.0, color: Color(0xFF1F2F70), fontFamily: 'DMSans',),
-                    ),
-                  ),
-                )
-              ),
-
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 15.0),
-                      child: SizedBox(
-
-                        width: 325,
-                        height: 50,
-                        child: ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          primary: Color(0xFF1F2F70),
-                        ),
-                          child: Text('LOGIN', style: TextStyle(fontSize: 15.0, fontFamily: 'DMSans',color: Colors.white),
-                        ),)
+                new Container(
+                  padding: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 35.0),
+                  child: new Center(
+                  child: RichText(
+                  text: TextSpan(
+                  text: 'Welcome to\nyour personal\nphysiotherapist',
+                  style: TextStyle(fontSize: 45.0, color: Color(0xFF1F2F70), fontFamily: 'DMSans',),
                       ),
                     ),
+                  )
+                ),
 
-                      SizedBox(
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 25.0),
+                        child: SizedBox(
+                          height: 50 ,
                           width: 325,
-                          height: 50,
                           child: ElevatedButton(
-                            onPressed: () {},
-                            style: ElevatedButton.styleFrom(
-                              primary: Colors.white,
-                            ),
-                            child: Text('REGISTER', style: TextStyle(fontSize: 15.0, fontFamily: 'DMSans',color: Color(0xFF1F2F70)),
-                            ),)
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            primary: Color(0xFF1F2F70),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)
+                            )
+                          ),
+                            child: Text('LOGIN', style: TextStyle(fontSize: 15.0, fontFamily: 'DMSans',color: Colors.white),
+                          ),),
+                        ),
                       ),
-                ])
+
+                        SizedBox(
+                            width: 325,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                              style: ElevatedButton.styleFrom(
+                                primary: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                side: BorderSide(color: Color(0xFF1F2F70))
+                              )
+                              ),
+                              child: Text('REGISTER', style: TextStyle(fontSize: 15.0, fontFamily: 'DMSans',color: Color(0xFF1F2F70)),
+                              )                       ),
+                        ),
+                  ]),
+          )
               )
           )
 
