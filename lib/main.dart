@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:heath_matthews_physio/screens/information_screen.dart';
 import 'package:heath_matthews_physio/screens/login.dart';
+import 'package:heath_matthews_physio/screens/mainScreen2.dart';
 import 'package:heath_matthews_physio/screens/main_screen.dart';
 import 'screens/splash_screen.dart';
 
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
         '/loginScreen': (context) => const Login(),
         '/mainScreen': (context) => const mainScreen(),
         '/informationScreen': (context) => const informationScreen(),
+        '/mainScreen2': (context) => const mainScreen2(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
