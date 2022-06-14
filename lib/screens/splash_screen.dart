@@ -16,7 +16,7 @@ class _SplashState extends State<Splash> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/loginScreen');
+        Navigator.pushNamed(context, '/mainScreen');
       },
       child: Container(
           decoration: const BoxDecoration(
