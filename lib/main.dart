@@ -4,6 +4,7 @@ import 'package:heath_matthews_physio/screens/information_screen.dart';
 import 'package:heath_matthews_physio/screens/login.dart';
 import 'package:heath_matthews_physio/screens/mainScreen2.dart';
 import 'package:heath_matthews_physio/screens/main_screen.dart';
+import 'package:heath_matthews_physio/screens/register.dart';
 import 'screens/splash_screen.dart';
 
 void main() {
@@ -23,8 +24,10 @@ class MyApp extends StatelessWidget {
         // When navigating to the "/" route, build the FirstScreen widget.
         '/': (context) => const Splash(),
         // When navigating to the "/second" route, build the SecondScreen widget.
-        '/loginScreen': (context) => const Login(),
         '/mainScreen': (context) => const mainScreen(),
+        '/mainScreen2': (context) => const mainScreen2(),
+        '/loginScreen': (context) => const Login(),
+        '/registerScreen': (context) => const Register(),
         '/informationScreen': (context) => const informationScreen(),
         '/mainScreen2': (context) => const mainScreen2(),
       },
