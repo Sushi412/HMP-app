@@ -11,4 +11,8 @@ class DynamicSize {
   //Fahad's Screen (800 X 360)
   static double Faheight(double val) => screenHeight * (val / 800);
   static double Fawidth(double val) => screenWidth * (val / 360);
+
+  //Aazeem's Screen (816 X 432)
+  static double Azheight(double val) => screenHeight * (val / 816);
+  static double Azwidth(double val) => screenWidth * (val / 432);
 }

@@ -56,7 +56,10 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.15.0"
+
+
+    version: "1.16.0"
+
   cross_file:
     dependency: transitive
     description:
@@ -64,6 +67,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.3+1"
+
   crypto:
     dependency: transitive
     description:
@@ -191,6 +195,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+
   image_cropper:
     dependency: "direct main"
     description:
@@ -198,6 +203,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.1"
+
   image_picker:
     dependency: "direct main"
     description:
@@ -227,7 +233,11 @@ packages:
     source: hosted
     version: "0.8.5+5"
   image_picker_platform_interface:
-    dependency: "direct main"
+
+    
+
+    dependency: transitive
+
     description:
       name: image_picker_platform_interface
       url: "https://pub.dartlang.org"
@@ -239,7 +249,9 @@ packages:
       name: js
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.3"
+
+    version: "0.6.4"
+
   lints:
     dependency: transitive
     description:
