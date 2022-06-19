@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
         '/loginScreen': (context) => const Login(),
         '/registerScreen': (context) => const Register(),
         '/informationScreen': (context) => const informationScreen(),
+        '/mainScreen2': (context) => const mainScreen2(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
