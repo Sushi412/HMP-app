@@ -39,7 +39,7 @@ class _mainScreen2State extends State<mainScreen2> {
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 25.0),
                           child: SizedBox(
-                            height: 50 ,
+                             height: 50 ,
                             width: 325,
                             child: ElevatedButton(
                               onPressed: () {
@@ -61,7 +61,7 @@ class _mainScreen2State extends State<mainScreen2> {
                           height: 50,
                           child: ElevatedButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/informationScreen');
+                                Navigator.pushNamed(context, '/reg_name_and_dp');
                               },
                               style: ElevatedButton.styleFrom(
                                   primary: Colors.white,
