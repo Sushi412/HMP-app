@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:heath_matthews_physio/DynamicSize/size.dart';
 
 class mainScreen extends StatefulWidget {
   const mainScreen({Key? key}) : super(key: key);
@@ -31,8 +32,9 @@ class _mainScreenState extends State<mainScreen> {
                         text: TextSpan(
                           text: 'Welcome to\nyour personal\nphysiotherapist',
                           style: TextStyle(
-                            fontSize: 34.0,
-                            fontWeight: FontWeight.bold,
+                            fontSize: DynamicSize.Azheight(38.0),
+                            fontWeight: FontWeight.w700,
+                            letterSpacing:  DynamicSize.Aaheight(0.5),
                             color: Color(0xFF1F2F70),
                             fontFamily: 'DMSans',
                           ),
