@@ -98,12 +98,17 @@ class _adminScreenState extends State<adminScreen> {
                         child: ListView(
                           scrollDirection: Axis.vertical,
                           children: [
-                            InputChip(
-                                avatar: const Text('63'),
-                                label: const Text('Days'),
-                                backgroundColor: Colors.white,
-                                onPressed: () {}
+                            Row(
+                              children: [
+                                InputChip(
+                                    avatar: const Text('63'),
+                                    label: const Text('Days'),
+                                    backgroundColor: Colors.white,
+                                    onPressed: () {}
                                 ),
+                              ],
+                              mainAxisAlignment: MainAxisAlignment.start,
+                            ),
                             Text("Core & Back \nFitness Program",style: GoogleFonts.dmSans(
                               fontSize: DynamicSize.Aaheight(18),
                               color: Color(0xFF2F3F70),
@@ -132,9 +137,11 @@ class _adminScreenState extends State<adminScreen> {
                               children: [
                                 Container(
                                   child: DropdownButton(
-                                    hint: Text(' Number of Days',style: GoogleFonts.dmSans(
-                                        fontSize: DynamicSize.Aaheight(12)
-                                    ),), // Not necessary for Option 1
+                                    hint: Center(
+                                      child: Text(' Number of Days',style: GoogleFonts.dmSans(
+                                          fontSize: DynamicSize.Aaheight(12),
+                                      ),),
+                                    ), // Not necessary for Option 1
                                     value: _selectedLocation,
                                     onChanged: (newValue) {
                                       setState(() {
