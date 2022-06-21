@@ -10,6 +10,9 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+//To Control PassWord Visibiltiy
+  late bool _visibility;
+
   Future popUpVerificationMsg(BuildContext context) {
     return showDialog(
       context: context,
@@ -53,6 +56,12 @@ class _RegisterState extends State<Register> {
         );
       },
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _visibility = false;
   }
 
   @override
@@ -162,14 +171,16 @@ class _RegisterState extends State<Register> {
                             hintText: "Email address",
                             border: InputBorder.none,
                           ),
+                          keyboardType: TextInputType.emailAddress,
                         ),
                       ),
 
                       //Create Password TextField
                       SizedBox(height: DynamicSize.Faheight(12)),
                       Container(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: DynamicSize.Fawidth(19)),
+                        padding: EdgeInsets.only(
+                            left: DynamicSize.Fawidth(19),
+                            right: DynamicSize.Fawidth(8)),
                         margin: EdgeInsets.symmetric(
                             horizontal: DynamicSize.Fawidth(29)),
                         alignment: Alignment.center,
@@ -205,8 +216,19 @@ class _RegisterState extends State<Register> {
                           decoration: InputDecoration(
                             hintText: "Create Password",
                             border: InputBorder.none,
+                            suffixIcon: IconButton(
+                              splashRadius: 1,
+                              splashColor: Colors.transparent,
+                              icon: Icon(_visibility
+                                  ? Icons.visibility_off
+                                  : Icons.visibility),
+                              color: Color(
+                                  _visibility ? (0xFF193669) : (0xFF666161)),
+                              onPressed: () =>
+                                  setState(() => _visibility = !_visibility),
+                            ),
                           ),
-                          obscureText: true,
+                          obscureText: !_visibility,
                         ),
                       ),
 

@@ -83,15 +83,13 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 
 class MyApp extends StatefulWidget {
-   MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
 
   @override
   _reg_name_and_dpState createState() => _reg_name_and_dpState();
 }
 
-
 class reg_name_and_dp extends StatefulWidget {
-
   @override
   State<reg_name_and_dp> createState() => _reg_name_and_dpState();
 }
@@ -149,14 +147,16 @@ class _reg_name_and_dpState extends State<reg_name_and_dp> {
   }
 
   showAlertDialog(BuildContext context) {
-
     // set up the button
     Widget fromcamera = FlatButton(
-      child: Text("Open Camera",style: GoogleFonts.dmSans(
-        fontWeight: FontWeight.bold,
-        fontSize: 15.0,
-        color: Color(0xFF2F3F70),
-      ),),
+      child: Text(
+        "Open Camera",
+        style: GoogleFonts.dmSans(
+          fontWeight: FontWeight.bold,
+          fontSize: 15.0,
+          color: Color(0xFF2F3F70),
+        ),
+      ),
       onPressed: () {
         _getFromCamera();
         Navigator.pop(context);
@@ -164,32 +164,32 @@ class _reg_name_and_dpState extends State<reg_name_and_dp> {
     );
 
     Widget fromgallery = FlatButton(
-      child: Text("Open Gallery",style: GoogleFonts.dmSans(
-          fontWeight: FontWeight.bold,
-          color: Color(0xFF2F3F70),
-          fontSize: 15.0
-      ),),
+      child: Text(
+        "Open Gallery",
+        style: GoogleFonts.dmSans(
+            fontWeight: FontWeight.bold,
+            color: Color(0xFF2F3F70),
+            fontSize: 15.0),
+      ),
       onPressed: () {
         _getFromGallery();
         Navigator.pop(context);
       },
     );
 
-
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("SET/UPLOAD A Profile Picture",style: GoogleFonts.dmSans(
-      fontWeight: FontWeight.bold,
-          fontSize: 15.0
-      ),),
-      content: Text("Please choose how you want to update your current profile picture",style: GoogleFonts.dmSans(
-          fontWeight: FontWeight.bold,
-          fontSize: 15.0
-      ),),
-      actions: [
-        fromgallery,
-        fromcamera
-      ],
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(DynamicSize.Aaheight(15))),
+      title: Text(
+        "SET/UPLOAD A Profile Picture",
+        style: GoogleFonts.dmSans(fontWeight: FontWeight.bold, fontSize: 15.0),
+      ),
+      content: Text(
+        "Please choose how you want to update your current profile picture",
+        style: GoogleFonts.dmSans(fontWeight: FontWeight.bold, fontSize: 15.0),
+      ),
+      actions: [fromgallery, fromcamera],
     );
 
     // show the dialog
@@ -206,10 +206,9 @@ class _reg_name_and_dpState extends State<reg_name_and_dp> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.only(
-          top: 68.0,
-          left: 16.0,
-          right: 16.0
-        ),
+            top: DynamicSize.Aaheight(68.0),
+            left: DynamicSize.Aawidth(16.0),
+            right: DynamicSize.Aawidth(16.0)),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -217,38 +216,53 @@ class _reg_name_and_dpState extends State<reg_name_and_dp> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
                     showAlertDialog(context);
                   },
-                  child: SizedBox(
+                  child: Container(
                     width: DynamicSize.Aawidth(100),
                     height: DynamicSize.Aaheight(100),
+                    decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.circular(DynamicSize.Aaheight(15))),
                     child: _image != null
-                        ? Image.file(
-                      _image!,
-                      fit: BoxFit.cover,
-                    )
-                        : Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      child: Image.asset('images/user_image.jpg'),
-                    ),
+                        ? ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(DynamicSize.Aaheight(15)),
+                            child: Image.file(
+                              _image!,
+                              fit: BoxFit.cover,
+                            ),
+                          )
+                        : ClipRRect(
+                            borderRadius:
+                                BorderRadius.circular(DynamicSize.Aaheight(15)),
+                            child: Image.asset(
+                              'images/user_image.jpg',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
                   ),
                 ),
               ],
             ),
-            Text("Profile Photo",style: GoogleFonts.dmSans(
-              fontSize: 12.0,fontWeight: FontWeight.w500
-            ),),
-            Text("(Optional)",style: GoogleFonts.dmSans(
-                fontSize: 12.0,fontWeight: FontWeight.w500
-            ),),
+            Text(
+              "Profile Photo",
+              style: GoogleFonts.dmSans(
+                  fontSize: DynamicSize.Aaheight(12),
+                  fontWeight: FontWeight.w500),
+            ),
+            Text(
+              "(Optional)",
+              style: GoogleFonts.dmSans(
+                  fontSize: 12.0, fontWeight: FontWeight.w500),
+            ),
             SizedBox(
               height: DynamicSize.Aaheight(40),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: DynamicSize.Aawidth(19)),
+              padding:
+                  EdgeInsets.symmetric(horizontal: DynamicSize.Aawidth(19)),
               margin: EdgeInsets.symmetric(horizontal: DynamicSize.Aawidth(25)),
               alignment: Alignment.center,
               height: DynamicSize.Aaheight(60),
@@ -288,10 +302,11 @@ class _reg_name_and_dpState extends State<reg_name_and_dp> {
               ),
             ),
             SizedBox(
-              height: DynamicSize.Aaheight(10.0),
+              height: DynamicSize.Aaheight(15.0),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: DynamicSize.Aawidth(19)),
+              padding:
+                  EdgeInsets.symmetric(horizontal: DynamicSize.Aawidth(19)),
               margin: EdgeInsets.symmetric(horizontal: DynamicSize.Aawidth(25)),
               alignment: Alignment.center,
               height: DynamicSize.Aaheight(60),
@@ -331,10 +346,11 @@ class _reg_name_and_dpState extends State<reg_name_and_dp> {
               ),
             ),
             SizedBox(
-              height: DynamicSize.Aaheight(10.0),
+              height: DynamicSize.Aaheight(15.0),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: DynamicSize.Aawidth(19)),
+              padding:
+                  EdgeInsets.symmetric(horizontal: DynamicSize.Aawidth(19)),
               margin: EdgeInsets.symmetric(horizontal: DynamicSize.Aawidth(25)),
               alignment: Alignment.center,
               height: DynamicSize.Aaheight(60),
@@ -378,10 +394,11 @@ class _reg_name_and_dpState extends State<reg_name_and_dp> {
               height: DynamicSize.Aaheight(24.0),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: DynamicSize.Aawidth(15)),
+              padding:
+                  EdgeInsets.symmetric(horizontal: DynamicSize.Aawidth(15)),
               child: SizedBox(
                 width: double.infinity,
-                height: DynamicSize.Aaheight(50),
+                height: DynamicSize.Aaheight(60),
                 child: TextButton(
                   onPressed: () {
                     Navigator.pushNamed(context, '/informationScreen');
@@ -390,10 +407,10 @@ class _reg_name_and_dpState extends State<reg_name_and_dp> {
                       backgroundColor: Color(0xFF193669),
                       shape: RoundedRectangleBorder(
                         borderRadius:
-                        BorderRadius.circular(DynamicSize.Aaheight(15)),
+                            BorderRadius.circular(DynamicSize.Aaheight(15)),
                       )
-                    // padding: EdgeInsets.symmetric(horizontal: 1),
-                  ),
+                      // padding: EdgeInsets.symmetric(horizontal: 1),
+                      ),
                   child: Text(
                     'Next',
                     style: TextStyle(

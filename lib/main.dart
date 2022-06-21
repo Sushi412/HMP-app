@@ -4,11 +4,9 @@ import 'package:heath_matthews_physio/screens/information_screen.dart';
 import 'package:heath_matthews_physio/screens/login.dart';
 import 'package:heath_matthews_physio/screens/mainScreen2.dart';
 import 'package:heath_matthews_physio/screens/main_screen.dart';
-
+import 'package:heath_matthews_physio/screens/myPrograms.dart';
 import 'package:heath_matthews_physio/screens/reg_name_and_dp.dart';
-
 import 'package:heath_matthews_physio/screens/register.dart';
-
 import 'screens/splash_screen.dart';
 
 void main() {
@@ -34,10 +32,12 @@ class MyApp extends StatelessWidget {
         '/registerScreen': (context) => const Register(),
         '/informationScreen': (context) => const informationScreen(),
         '/mainScreen2': (context) => const mainScreen2(),
-        '/reg_name_and_dp':(context)=> reg_name_and_dp(),
+        '/reg_name_and_dp': (context) => reg_name_and_dp(),
+        '/myPrograms': (context) => const myPrograms(),
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        accentColor: Color(0xFF193669),
       ),
     );
   }
