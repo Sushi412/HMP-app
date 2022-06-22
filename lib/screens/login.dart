@@ -257,8 +257,8 @@ class _LoginState extends State<Login> {
             child: TextField(
               style: TextStyle(
                 fontFamily: 'DMSams',
-                fontSize: DynamicSize.Faheight(18),
-                letterSpacing: DynamicSize.Fawidth(0.5),
+                fontSize: DynamicSize.Faheight(14),
+                letterSpacing: DynamicSize.Fawidth(0),
               ),
               decoration: InputDecoration(
                 hintText: "Email address",
@@ -300,8 +300,8 @@ class _LoginState extends State<Login> {
             child: TextField(
               style: TextStyle(
                 fontFamily: 'DMSams',
-                fontSize: DynamicSize.Faheight(18),
-                letterSpacing: DynamicSize.Fawidth(0.5),
+                fontSize: DynamicSize.Faheight(14),
+                letterSpacing: DynamicSize.Fawidth(0),
               ),
               decoration: InputDecoration(
                 hintText: "Password",
@@ -330,8 +330,6 @@ class _LoginState extends State<Login> {
                 "Forgot Password ?",
                 style: TextStyle(
                   fontFamily: "DMSans",
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w500,
                   fontSize: DynamicSize.Faheight(15),
                   color: Color(0xFF193669),
                 ),
@@ -347,8 +345,11 @@ class _LoginState extends State<Login> {
               width: double.infinity,
               height: DynamicSize.Faheight(50),
               child: TextButton(
+
                 onPressed: () => Navigator.pushNamedAndRemoveUntil(
                     context, '/myPrograms', (route) => false),
+
+               
                 style: TextButton.styleFrom(
                     backgroundColor: Color(0xFF193669),
                     shape: RoundedRectangleBorder(
@@ -358,13 +359,11 @@ class _LoginState extends State<Login> {
                     // padding: EdgeInsets.symmetric(horizontal: 1),
                     ),
                 child: Text(
-                  'Sign In',
+                  'SIGN IN',
                   style: TextStyle(
                     fontFamily: 'DMSans',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w700,
-                    fontSize: DynamicSize.Faheight(22),
-                    letterSpacing: DynamicSize.Fawidth(0.8),
+                    fontSize: DynamicSize.Faheight(15),
+                    letterSpacing: DynamicSize.Fawidth(0.5),
                     color: Colors.white,
                   ),
                 ),
@@ -391,13 +390,11 @@ class _LoginState extends State<Login> {
                     // padding: EdgeInsets.symmetric(horizontal: 1),
                     ),
                 child: Text(
-                  'Register',
+                  'REGISTER',
                   style: TextStyle(
                     fontFamily: 'DMSans',
-                    fontStyle: FontStyle.normal,
-                    fontWeight: FontWeight.w700,
-                    fontSize: DynamicSize.Faheight(22),
-                    letterSpacing: DynamicSize.Fawidth(0.8),
+                    fontSize: DynamicSize.Faheight(15),
+                    letterSpacing: DynamicSize.Fawidth(0.5),
                     color: Colors.white,
                   ),
                 ),

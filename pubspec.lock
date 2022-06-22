@@ -56,6 +56,7 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "1.16.0"
   colorful_iconify_flutter:
     dependency: transitive
@@ -64,6 +65,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.2"
+
   cross_file:
     dependency: transitive
     description:
@@ -85,6 +87,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.5"
+  date_range_picker:
+    dependency: "direct main"
+    description:
+      name: date_range_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.7"
   dotted_line:
     dependency: "direct main"
     description:
@@ -205,6 +214,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+
   iconify_flutter:
     dependency: "direct main"
     description:
@@ -212,6 +222,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.0.4"
+
   image_cropper:
     dependency: "direct main"
     description:
@@ -260,7 +271,9 @@ packages:
       name: js
       url: "https://pub.dartlang.org"
     source: hosted
+
     version: "0.6.4"
+
   lints:
     dependency: transitive
     description:

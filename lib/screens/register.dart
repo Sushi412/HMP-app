@@ -164,8 +164,8 @@ class _RegisterState extends State<Register> {
                         child: TextField(
                           style: TextStyle(
                             fontFamily: 'DMSams',
-                            fontSize: DynamicSize.Faheight(18),
-                            letterSpacing: DynamicSize.Fawidth(0.5),
+                            fontSize: DynamicSize.Faheight(15),
+                            letterSpacing: DynamicSize.Fawidth(0),
                           ),
                           decoration: InputDecoration(
                             hintText: "Email address",
@@ -210,8 +210,8 @@ class _RegisterState extends State<Register> {
                         child: TextField(
                           style: TextStyle(
                             fontFamily: 'DMSams',
-                            fontSize: DynamicSize.Faheight(18),
-                            letterSpacing: DynamicSize.Fawidth(0.5),
+                            fontSize: DynamicSize.Faheight(14),
+                            letterSpacing: DynamicSize.Fawidth(0),
                           ),
                           decoration: InputDecoration(
                             hintText: "Create Password",
@@ -244,7 +244,7 @@ class _RegisterState extends State<Register> {
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius:
-                              BorderRadius.circular(DynamicSize.Faheight(15)),
+                              BorderRadius.circular(DynamicSize.Faheight(14)),
                           boxShadow: [
                             BoxShadow(
                               offset: Offset(0, DynamicSize.Faheight(2)),
@@ -266,8 +266,8 @@ class _RegisterState extends State<Register> {
                         child: TextField(
                           style: TextStyle(
                             fontFamily: 'DMSams',
-                            fontSize: DynamicSize.Faheight(18),
-                            letterSpacing: DynamicSize.Fawidth(0.5),
+                            fontSize: DynamicSize.Faheight(14),
+                            letterSpacing: DynamicSize.Fawidth(0),
                           ),
                           decoration: InputDecoration(
                             hintText: "Confirm Password",
@@ -299,9 +299,7 @@ class _RegisterState extends State<Register> {
                               'Register',
                               style: TextStyle(
                                 fontFamily: 'DMSans',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w700,
-                                fontSize: DynamicSize.Faheight(22),
+                                fontSize: DynamicSize.Faheight(18),
                                 letterSpacing: DynamicSize.Fawidth(0.8),
                                 color: Colors.white,
                               ),
@@ -332,9 +330,7 @@ class _RegisterState extends State<Register> {
                               'Sign In',
                               style: TextStyle(
                                 fontFamily: 'DMSans',
-                                fontStyle: FontStyle.normal,
-                                fontWeight: FontWeight.w700,
-                                fontSize: DynamicSize.Faheight(22),
+                                fontSize: DynamicSize.Faheight(18),
                                 letterSpacing: DynamicSize.Fawidth(0.8),
                                 color: Colors.white,
                               ),
