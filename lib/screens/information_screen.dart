@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:heath_matthews_physio/DynamicSize/size.dart';
 
@@ -390,6 +391,7 @@ class _informationScreenState extends State<informationScreen> {
                             )),
                         onPressed: () {
                           debugPrint('Received click');
+                          Navigator.pushNamed(context, '/workout-page');
                         },
                         child: Padding(
                           padding: EdgeInsets.symmetric(

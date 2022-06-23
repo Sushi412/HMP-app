@@ -9,6 +9,7 @@ import 'package:heath_matthews_physio/screens/main_screen.dart';
 import 'package:heath_matthews_physio/screens/reg_name_and_dp.dart';
 
 import 'package:heath_matthews_physio/screens/register.dart';
+import 'package:heath_matthews_physio/screens/workout-page.dart';
 
 import 'screens/splash_screen.dart';
 
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         '/mainScreen2': (context) => const mainScreen2(),
         '/reg_name_and_dp':(context)=> reg_name_and_dp(),
         '/adminScreen':(context)=>adminScreen(),
+        '/workout-page':(context)=>workoutScreen()
       },
       theme: ThemeData(
         primarySwatch: Colors.blue,
