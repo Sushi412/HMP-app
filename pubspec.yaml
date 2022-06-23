@@ -38,7 +38,12 @@ dependencies:
   font_awesome_flutter: ^10.1.0
   dotted_line: ^3.1.0
   get: ^4.6.5
+
+  grouped_list: ^3.7.1
+  folding_cell: ^1.0.0
+
   iconify_flutter: ^0.0.4
+
   flutter_svg: ^1.0.3
   image_picker: ^0.8.5+3
   image_cropper: ^1.3.1
@@ -95,7 +100,7 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: DM Sans
+    - family: DM Sans, Fireicon
       fonts:
         - asset: fonts/DMSans/DMSans-Bold.ttf
         - asset: fonts/DMSans/DMSans-BoldItalic.ttf
@@ -103,6 +108,8 @@ flutter:
         - asset: fonts/DMSans/DMSans-Medium.ttf
         - asset: fonts/DMSans/DMSans-MediumItalic.ttf
         - asset: fonts/DMSans/DMSans-Regular.ttf
+        - asset: fonts/Fireicon.ttf
+
   #   - family: Schyler
   #     fonts:
   #       - asset: fonts/Schyler-Regular.ttf
