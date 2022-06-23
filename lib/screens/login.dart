@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 // import 'package:dotted_line/dotted_line.dart';
 import 'package:heath_matthews_physio/DynamicSize/size.dart';
 
@@ -265,6 +264,7 @@ class _LoginState extends State<Login> {
                 hintText: "Email address",
                 border: InputBorder.none,
               ),
+              keyboardType: TextInputType.emailAddress,
             ),
           ),
 
@@ -345,9 +345,11 @@ class _LoginState extends State<Login> {
               width: double.infinity,
               height: DynamicSize.Faheight(50),
               child: TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context,'/adminScreen');
-                },
+
+                onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                    context, '/myPrograms', (route) => false),
+
+               
                 style: TextButton.styleFrom(
                     backgroundColor: Color(0xFF193669),
                     shape: RoundedRectangleBorder(

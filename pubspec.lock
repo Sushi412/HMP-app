@@ -56,7 +56,19 @@ packages:
       name: collection
       url: "https://pub.dartlang.org"
     source: hosted
+
+
+
     version: "1.16.0"
+  colorful_iconify_flutter:
+    dependency: transitive
+    description:
+      name: colorful_iconify_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.2"
+
+
   cross_file:
     dependency: transitive
     description:
@@ -146,6 +158,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.6"
+  flutter_smart_dialog:
+    dependency: "direct main"
+    description:
+      name: flutter_smart_dialog
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.5.3+2"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -212,6 +231,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.1"
+
+  iconify_flutter:
+    dependency: "direct main"
+    description:
+      name: iconify_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4"
+
   image_cropper:
     dependency: "direct main"
     description:
@@ -260,7 +288,11 @@ packages:
       name: js
       url: "https://pub.dartlang.org"
     source: hosted
+
+
     version: "0.6.4"
+
+
   lints:
     dependency: transitive
     description:
@@ -492,4 +524,7 @@ packages:
     version: "5.3.1"
 sdks:
   dart: ">=2.17.0-0 <3.0.0"
+
   flutter: ">=2.10.0-0"
+
+ 

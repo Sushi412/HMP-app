@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
 import 'package:heath_matthews_physio/DynamicSize/size.dart';
-
 
 class mainScreen2 extends StatefulWidget {
   const mainScreen2({Key? key}) : super(key: key);
@@ -13,7 +11,6 @@ class mainScreen2 extends StatefulWidget {
 class _mainScreen2State extends State<mainScreen2> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
@@ -105,6 +102,7 @@ class _mainScreen2State extends State<mainScreen2> {
           ),
         ),
       ),
+
 
 //     return  Scaffold(
 //         backgroundColor: Colors.white,
@@ -217,6 +215,7 @@ class _mainScreen2State extends State<mainScreen2> {
 //                 )
 //             )
 //         )
+
 
 
 
