@@ -347,7 +347,7 @@ class _LoginState extends State<Login> {
               child: TextButton(
 
                 onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                    context, '/myPrograms', (route) => false),
+                    context, '/adminScreen', (route) => false),
 
                
                 style: TextButton.styleFrom(

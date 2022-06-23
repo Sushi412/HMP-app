@@ -54,7 +54,7 @@ dependencies:
   http: ^0.13.4
   http_parser: ^4.0.1
 
-  flutter_smart_dialog: ^4.5.3+2
+  flutter_smart_dialog: ^3.0.5
 
   date_range_picker: ^1.0.7
 

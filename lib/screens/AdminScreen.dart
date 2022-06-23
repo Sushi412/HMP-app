@@ -235,7 +235,9 @@ class _adminScreenState extends State<adminScreen> {
                               width: double.infinity,
                               height: DynamicSize.Aaheight(50),
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.pushNamed(context, '/myPrograms');
+                                },
                                 style: TextButton.styleFrom(
                                     backgroundColor: Color(0xFF193669),
                                     shape: RoundedRectangleBorder(
@@ -285,7 +287,174 @@ class _adminScreenState extends State<adminScreen> {
                     ),
                   ],
                 ),
+                child: Padding(
+                  padding: EdgeInsets.all(DynamicSize.Aaheight(20)),
+                  child: ListView(
+                    scrollDirection: Axis.vertical,
+                    children: [
+                      Row(
+                        children: [
+                          InputChip(
+                              avatar: const Text('63'),
+                              label: const Text('Days'),
+                              backgroundColor: Colors.white,
+                              onPressed: () {}
+                          ),
+                        ],
+                        mainAxisAlignment: MainAxisAlignment.start,
+                      ),
+                      Text("Core & Back \nFitness Program",style: GoogleFonts.dmSans(
+                          fontSize: DynamicSize.Aaheight(18),
+                          color: Color(0xFF2F3F70),
+                          fontWeight: FontWeight.w500
+                      ),),
+                      SizedBox(
+                        height: DynamicSize.Aaheight(16.0),
+                      ),
+                      Text("Are you tired of a stiff lower back? Are you tired of being told your core is weak all the time? If so, then this program is for you! Unlock the secrets to freedom of movement in just 6 minutes a day! ",style: GoogleFonts.dmSans(
+                          fontSize: DynamicSize.Aaheight(12),
+                          color: Colors.black,
+                          fontWeight: FontWeight.w400
+                      ),),
+                      SizedBox(
+                        height: DynamicSize.Aaheight(24.0),
+                      ),
+                      Text("Choose start day and date",style: GoogleFonts.dmSans(
+                          fontSize: DynamicSize.Aaheight(13),
+                          color: Color(0xFF2F3F70),
+                          fontWeight: FontWeight.w500
+                      ),),
+                      SizedBox(
+                        height: DynamicSize.Aaheight(10.0),
+                      ),
+                      Row(
+                        children: [
+                          Container(
+                            child: DropdownButton(
+                              hint: Center(
+                                child: Text(' Number of Days',style: GoogleFonts.dmSans(
+                                  fontSize: DynamicSize.Aaheight(12),
+                                ),),
+                              ), // Not necessary for Option 1
+                              value: _selectedLocation,
+                              onChanged: (newValue) {
+                                setState(() {
+                                  _selectedLocation = newValue.toString();
+                                });
+                              },
+                              items: _locations.map((location) {
+                                return DropdownMenuItem(
+                                  child: new Text(location),
+                                  value: location,
+                                );
+                              }).toList(),
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8.0),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: DynamicSize.Aawidth(16),
+                          ),
+                          Container(
+                            child: Row(
+                              children: [
+                                Container(
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      _buildMaterialDatePicker(context);
+                                    },
+                                    child: Padding(
+                                      padding: EdgeInsets.all(DynamicSize.Aaheight(18)),
+                                      child: Text(
+                                          "${ selectedDate.toLocal()}".split(' ')[0] ?? 'Select Date',
+                                          style: GoogleFonts.dmSans(
+                                              fontSize: DynamicSize.Aaheight(12),
+                                              color: Color(0xFF2F3F70)
+                                          )
+                                      ),
+                                    ),
+
+                                  ),
+                                ),
+                                Icon(FontAwesomeIcons.calendar,
+                                  size: DynamicSize.Aaheight(18), //Icon Size
+                                  color: Color(0xFF2F3F70), //Color Of Icon
+                                ),
+                              ],
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(8.0),
+                              ),
+                            ),
+                          ),
+
+                        ],
+                      ),
+                      SizedBox(
+                        height: DynamicSize.Aaheight(16.0),
+                      ),
+                      Container(
+                        child: DropdownButton(
+                          hint: Text(' Select Health Coach',style: GoogleFonts.dmSans(fontSize: DynamicSize.Aaheight(12)),), // Not necessary for Option 1
+                          value: _selectedheathCoach,
+                          onChanged: (newValue) {
+                            setState(() {
+                              _selectedheathCoach = newValue.toString();
+                            });
+                          },
+                          items: _healthCoach.map((location) {
+                            return DropdownMenuItem(
+                              child: new Text(location),
+                              value: location,
+                            );
+                          }).toList(),
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8.0),
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        height: DynamicSize.Aaheight(24.0),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        height: DynamicSize.Aaheight(50),
+                        child: TextButton(
+                          onPressed: () {},
+                          style: TextButton.styleFrom(
+                              backgroundColor: Color(0xFF193669),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    DynamicSize.Aaheight(15)),
+                              )
+                            // padding: EdgeInsets.symmetric(horizontal: 1),
+                          ),
+                          child: Text(
+                            'ADD PROGRAM',
+                            style: TextStyle(
+                              fontFamily: 'DMSans',
+                              fontSize: DynamicSize.Aaheight(15.0),
+                              fontWeight: FontWeight.w400,
+                              letterSpacing: DynamicSize.Aawidth(0.8),
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
+
 
             ],
           ),

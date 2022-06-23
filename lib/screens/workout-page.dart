@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 // import 'package:grouped_list/grouped_list.dart';
 // import 'package:folding_cell/folding_cell.dart';
 import 'package:get/get.dart';
+import 'package:heath_matthews_physio/DynamicSize/size.dart';
 import 'package:heath_matthews_physio/NavBar.dart';
 import 'package:heath_matthews_physio/fireicon_icons.dart';
 
@@ -55,34 +56,36 @@ class _workoutScreenState extends State<workoutScreen> {
                       )
                   ),
             ),
-            Padding(
-            padding: const EdgeInsets.fromLTRB(75.0, 0.0, 75.0, 0.0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                children: <Widget>[
-                IconButton(
-                  onPressed: (){},
-                  icon: Icon(Icons.arrow_back_ios),
-                ),
+            Center(
+              child: Padding(
+              padding: const EdgeInsets.fromLTRB(60.0, 0.0, 60.0, 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.max,
+                  children: <Widget>[
+                  IconButton(
+                    onPressed: (){},
+                    icon: Icon(Icons.arrow_back_ios),
+                  ),
 
-                  Container(
-                      child: Center(
-                        child: RichText(
-                          text: TextSpan(
-                            text: 'Tuesday, June 14 2022',
-                            style: TextStyle(fontSize: 17.0, color: Colors.black, fontFamily: 'DMSans', fontWeight: FontWeight.w500),
+                    Container(
+                        child: Center(
+                          child: RichText(
+                            text: TextSpan(
+                              text: 'Tuesday, June 14 2022',
+                              style: TextStyle(fontSize: DynamicSize.Azheight(17), color: Colors.black, fontFamily: 'DMSans', fontWeight: FontWeight.w500),
+                            ),
                           ),
-                        ),
-                      )
-                ),
+                        )
+                  ),
 
-                IconButton(
-                  onPressed: (){},
-                    icon: Icon(Icons.arrow_forward_ios),
-                ),
-                ],
-                ),
+                  IconButton(
+                    onPressed: (){},
+                      icon: Icon(Icons.arrow_forward_ios),
+                  ),
+                  ],
+                  ),
           ),
+            ),
             Padding(
               padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 24.0),
               child: Container(
@@ -90,7 +93,7 @@ class _workoutScreenState extends State<workoutScreen> {
                   child: RichText(
                     text: TextSpan(
                       text: 'Day1',
-                      style: TextStyle(fontSize: 17.0, color: Color(0xFF1F2F70), fontFamily: 'DMSans', fontWeight: FontWeight.w500),
+                      style: TextStyle(fontSize:DynamicSize.Azheight(17), color: Color(0xFF1F2F70), fontFamily: 'DMSans', fontWeight: FontWeight.w500),
                     ),
                   ),
                 )
@@ -112,7 +115,9 @@ class _workoutScreenState extends State<workoutScreen> {
           ),
 
 
-                buildRoundedCard(),
+                GestureDetector(child: buildRoundedCard(),onTap: (){
+                  Navigator.pushNamed(context,'/exerciseScreen');
+                },),
                 buildRoundedCards(),
                 buildRoundedCardes(),
           ],)

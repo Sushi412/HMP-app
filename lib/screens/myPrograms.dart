@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:heath_matthews_physio/NavBar.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:heath_matthews_physio/DynamicSize/size.dart';
 import 'package:iconify_flutter/icons/bx.dart';
@@ -15,14 +16,11 @@ class _myProgramsState extends State<myPrograms> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavBar(),
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.menu_rounded),
-          color: Color(0xFFDADADA),
-          iconSize: DynamicSize.Faheight(31),
-        ),
+        iconTheme: IconThemeData(color: Color(0xFF2F3F70)),
+        elevation: 0.0,
         centerTitle: true,
         title: Text(
           'My Programs',
@@ -35,7 +33,6 @@ class _myProgramsState extends State<myPrograms> {
           ),
         ),
         backgroundColor: Colors.white,
-        elevation: 0,
       ),
       body: Container(
         padding: EdgeInsets.symmetric(horizontal: DynamicSize.Fawidth(24)),
@@ -132,7 +129,7 @@ Widget programContainer(context, index) {
   return Padding(
     padding: EdgeInsets.only(bottom: DynamicSize.Faheight(24)),
     child: Container(
-      height: DynamicSize.Faheight(202),
+      height: DynamicSize.Faheight(210),
       width: DynamicSize.Fawidth(334),
       padding: EdgeInsets.symmetric(
           vertical: DynamicSize.Faheight(12),
@@ -287,7 +284,9 @@ Widget programContainer(context, index) {
                 height: DynamicSize.Faheight(32),
                 width: DynamicSize.Fawidth(156),
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushNamed(context,'/workout-page');
+                  },
                   style: ButtonStyle(
                     backgroundColor:
                         MaterialStateProperty.all(_DarkColorList[index % 3]),
