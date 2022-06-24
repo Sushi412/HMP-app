@@ -15,4 +15,5 @@ class DynamicSize {
   //Aazeem's Screen (816 X 432)
   static double Azheight(double val) => screenHeight * (val / 816);
   static double Azwidth(double val) => screenWidth * (val / 432);
+
 }

@@ -116,7 +116,7 @@ class _workoutScreenState extends State<workoutScreen> {
 
 
                 GestureDetector(child: buildRoundedCard(),onTap: (){
-                  Navigator.pushNamed(context,'/exerciseScreen');
+                  Navigator.pushNamed(context,'/exercise');
                 },),
                 buildRoundedCards(),
                 buildRoundedCardes(),

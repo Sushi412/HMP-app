@@ -10,31 +10,36 @@ class excerciseScreen extends StatefulWidget {
 class _excerciseScreenState extends State<excerciseScreen> {
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        drawer: Drawer(),
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          leading: Builder(builder: (context) {
-            return IconButton(
-                onPressed: () => Scaffold.of(context).openDrawer(),
-                icon: Icon(
-                  Icons.dehaze_sharp,
-                  color: Colors.blue.shade900,
-                ));
-          }),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: 10.0,),
-                Container(
-                  padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width * 0.05,
-                    right: MediaQuery.of(context).size.width * 0.05,
+
+    return Scaffold(
+      drawer:NavBar(),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation:0,
+        iconTheme: IconThemeData(color: Color(0xFF2F3F70)),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+
+          children: <Widget>[
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(height: 10.0),
+                  Container(
+                    child: Padding(
+                      padding:EdgeInsets.fromLTRB(20, 5,0, 0),
+                      child: Text('Foam Rolling - Lower back',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500,
+                          fontFamily:'DMSans',
+                          color: Colors.blue[900],
+                        ),
+                      ),),
+
                   ),
                   child:
                   Text(
