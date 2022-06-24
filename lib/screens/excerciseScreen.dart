@@ -12,28 +12,11 @@ class _excerciseScreenState extends State<excerciseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer:NavBar(),
-
       backgroundColor: Colors.white,
-
-
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation:0,
         iconTheme: IconThemeData(color: Color(0xFF2F3F70)),
-        // leading: Builder(
-        //     builder: (context) {
-        //       return IconButton(onPressed: () => Scaffold.of(context).openDrawer(),
-        //         icon: Icon(Icons.format_list_bulleted_rounded,
-        //           color: Colors.blue[900],
-        //         ),
-        //
-        //       );
-        //     }
-        // ),
-        // leading: Icon( Icons.format_list_bulleted_rounded,
-        // color: Colors.grey,
-        // ),
-
       ),
       body: SingleChildScrollView(
         child: Column(

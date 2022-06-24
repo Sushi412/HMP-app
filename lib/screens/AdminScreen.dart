@@ -236,7 +236,7 @@ class _adminScreenState extends State<adminScreen> {
                               height: DynamicSize.Aaheight(50),
                               child: TextButton(
                                 onPressed: () {
-                                  Navigator.pushNamed(context, '/myPrograms');
+                                  Navigator.pushNamed(context, '/program');
                                 },
                                 style: TextButton.styleFrom(
                                     backgroundColor: Color(0xFF193669),

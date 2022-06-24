@@ -391,7 +391,7 @@ class _informationScreenState extends State<informationScreen> {
                             )),
                         onPressed: () {
                           debugPrint('Received click');
-                          Navigator.pushNamed(context, '/workout-page');
+                          // Navigator.pushNamed(context, '/workout-page');
                         },
                         child: Padding(
                           padding: EdgeInsets.symmetric(
