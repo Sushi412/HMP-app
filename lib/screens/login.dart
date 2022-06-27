@@ -1,6 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 // import 'package:dotted_line/dotted_line.dart';
 import 'package:heath_matthews_physio/DynamicSize/size.dart';
+import 'package:heath_matthews_physio/screens/AdminScreen.dart';
+
+import '../main.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -10,6 +15,15 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   //To Control PassWord Visibiltiy
   late bool _visibility;
 
@@ -255,6 +269,7 @@ class _LoginState extends State<Login> {
               ],
             ),
             child: TextField(
+              controller: emailController,
               style: TextStyle(
                 fontFamily: 'DMSams',
                 fontSize: DynamicSize.Faheight(14),
@@ -298,6 +313,7 @@ class _LoginState extends State<Login> {
               ],
             ),
             child: TextField(
+              controller: passwordController,
               style: TextStyle(
                 fontFamily: 'DMSams',
                 fontSize: DynamicSize.Faheight(14),
@@ -345,11 +361,12 @@ class _LoginState extends State<Login> {
               width: double.infinity,
               height: DynamicSize.Faheight(50),
               child: TextButton(
+                onPressed: () {
+                  signIn().then((_) => Navigator.pushNamed(context, '/adminScreen'));
+                },
+                // Navigator.pushNamedAndRemoveUntil(
+                // context, '/adminScreen', (route) => false),
 
-                onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                    context, '/adminScreen', (route) => false),
-
-               
                 style: TextButton.styleFrom(
                     backgroundColor: Color(0xFF193669),
                     shape: RoundedRectangleBorder(
@@ -401,114 +418,40 @@ class _LoginState extends State<Login> {
               ),
             ),
           ),
-
-          //Or Sign Up With
-          // SizedBox(height: DynamicSize.Faheight(28)),
           // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
           //   children: [
-          //     //Gradient Line
-          //     DottedLine(
-          //       direction: Axis.horizontal,
-          //       lineLength: DynamicSize.Fawidth(120),
-          //       lineThickness: DynamicSize.Faheight(3.0),
-          //       dashLength: DynamicSize.Fawidth(3.0),
-          //       dashGradient: [Color(0x00C4C4C4), Color(0xFF193669)],
-          //       dashGapLength: 0.0,
-          //       dashGapGradient: [Color(0x00C4C4C4), Color(0xFF193669)],
-          //       dashGapRadius: 0.0,
+          //     Text("No Account?",style: GoogleFonts.dmSans(
+          //       fontSize: 12.0,
+          //       color: Color(0xFF2F3F70)
+          //     ),),
+          //     Text("Sign Up",style: TextStyle(
+          //       fontSize:12.0,
+          //       fontWeight: FontWeight.w500,
+          //       decoration: TextDecoration.underline,
+          //       fontFamily: 'dmSams'
           //     ),
-
-          //     //Text : Or Sign Up with
-          //     Text(
-          //       "Or Sign In With",
-          //       style: TextStyle(
-          //         fontFamily: 'DMSans',
-          //         fontSize: DynamicSize.Faheight(14),
-          //         fontWeight: FontWeight.w500,
-          //         letterSpacing: DynamicSize.Fawidth(0.5),
-          //         color: Color(0xFF555252),
-          //       ),
-          //     ),
-
-          //     //Gardient Line
-          //     DottedLine(
-          //       direction: Axis.horizontal,
-          //       lineLength: DynamicSize.Fawidth(120),
-          //       lineThickness: DynamicSize.Faheight(3.0),
-          //       dashLength: DynamicSize.Fawidth(3.0),
-          //       dashGradient: [Color(0xFF193669), Color(0x00C4C4C4)],
-          //       dashGapLength: 0.0,
-          //       dashGapGradient: [Color(0xFF193669), Color(0x00C4C4C4)],
-          //       dashGapRadius: 0.0,
           //     )
-          //   ],
-          // ),
-
-          // //Different Sign In Options
-          // SizedBox(height: DynamicSize.Faheight(29)),
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.center,
-          //   children: [
-          //     //Google
-          //     ElevatedButton(
-          //       onPressed: () {},
-          //       style: ElevatedButton.styleFrom(
-          //         shape: CircleBorder(),
-          //         elevation: 0,
-          //       ),
-          //       child: CircleAvatar(
-          //         radius: DynamicSize.Faheight(25),
-          //         backgroundColor: Color(0xFFECE9EC),
-          //         child: CircleAvatar(
-          //           radius: DynamicSize.Faheight(18),
-          //           backgroundColor: Color(0xFFECE9EC),
-          //           foregroundImage: AssetImage('assets/Icons/google.png'),
-          //         ),
-          //       ),
-          //     ),
-
-          //     //Facebook
-          //     // SizedBox(width: 5),
-          //     // ElevatedButton(
-          //     //   onPressed: () {},
-          //     //   style: ElevatedButton.styleFrom(
-          //     //     shape: CircleBorder(),
-          //     //     elevation: 0,
-          //     //   ),
-          //     //   child: CircleAvatar(
-          //     //     radius: 25,
-          //     //     backgroundColor: Color(0xFFECE9EC),
-          //     //     child: CircleAvatar(
-          //     //       radius: 18,
-          //     //       backgroundColor: Color(0xFFECE9EC),
-          //     //       foregroundImage: AssetImage('assets/Icons/facebook.png'),
-          //     //     ),
-          //     //   ),
-          //     // ),
-
-          //     //Apple
-          //     SizedBox(width: DynamicSize.Fawidth(5)),
-          //     ElevatedButton(
-          //       onPressed: () {},
-          //       style: ElevatedButton.styleFrom(
-          //         shape: CircleBorder(),
-          //         elevation: 0,
-          //       ),
-          //       child: CircleAvatar(
-          //         radius: DynamicSize.Faheight(25),
-          //         backgroundColor: Color(0xFFECE9EC),
-          //         child: CircleAvatar(
-          //           radius: DynamicSize.Faheight(18),
-          //           backgroundColor: Color(0xFFECE9EC),
-          //           foregroundImage: AssetImage('assets/Icons/apple.png'),
-          //         ),
-          //       ),
-          //     ),
           //   ],
           // )
         ],
       ),
     );
+  }
+
+  Future signIn() async {
+    // showDialog(
+    //   barrierDismissible: false,
+    //     context: context,
+    //     builder: (context) => Center(
+    //           child: CircularProgressIndicator(),
+    //         ));
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim());
+    } on FirebaseAuthException catch (e) {
+      print(e);
+    }
+    //navigatorKey.currentState!.popUntil((route) => route.isFirst);
   }
 }

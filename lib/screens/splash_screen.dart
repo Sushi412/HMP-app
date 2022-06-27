@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heath_matthews_physio/DynamicSize/size.dart';
+import 'package:heath_matthews_physio/screens/wrapper.dart';
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -17,7 +18,8 @@ class _SplashState extends State<Splash> {
 
   _navigateTologin() async {
     await Future.delayed(Duration(milliseconds: 1500), () {});
-    Navigator.pushReplacementNamed(context, '/mainScreen');
+    // Navigator.pushReplacementNamed(context, '/mainScreen');
+    Navigator.push(context, MaterialPageRoute(builder: (context)=>wrapper()));
   }
 
   @override

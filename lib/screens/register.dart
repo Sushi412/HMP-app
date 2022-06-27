@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../DynamicSize/size.dart';
@@ -12,6 +13,8 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
 //To Control PassWord Visibiltiy
   late bool _visibility;
+  final emailController= TextEditingController();
+  final passwordController=TextEditingController();
 
   Future popUpVerificationMsg(BuildContext context) {
     return showDialog(
@@ -162,6 +165,7 @@ class _RegisterState extends State<Register> {
                           ],
                         ),
                         child: TextField(
+                          controller: emailController,
                           style: TextStyle(
                             fontFamily: 'DMSams',
                             fontSize: DynamicSize.Faheight(15),
@@ -208,6 +212,7 @@ class _RegisterState extends State<Register> {
                           ],
                         ),
                         child: TextField(
+                          controller: passwordController,
                           style: TextStyle(
                             fontFamily: 'DMSams',
                             fontSize: DynamicSize.Faheight(14),
@@ -286,7 +291,12 @@ class _RegisterState extends State<Register> {
                           width: double.infinity,
                           height: DynamicSize.Faheight(50),
                           child: TextButton(
-                            onPressed: () => popUpVerificationMsg(context),
+                            onPressed: (){
+                              signUp().then((_){
+                                Navigator.pushNamed(context, '/adminScreen');
+                              });
+                            },
+                                // () => popUpVerificationMsg(context),
                             style: TextButton.styleFrom(
                                 backgroundColor: Color(0xFF193669),
                                 shape: RoundedRectangleBorder(
@@ -348,5 +358,22 @@ class _RegisterState extends State<Register> {
         ],
       ),
     );
+  }
+
+  Future signUp()async {
+    //final isValid=formKey.currentState!.validate();
+    //if (!isValid) return;
+    // showDialog(context: context, builder: (context)=>Center(
+    //   child: CircularProgressIndicator(),
+    // ));
+    try{
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passwordController.text);
+    }
+    on FirebaseAuthException catch(e){
+      print(e);
+      //print(Errors.show(e.code));
+      // Utils.showSnackBar(e.message);
+    }
+   // navigatorKey.currentState!.popUntil((route)=>route.isFirst);
   }
 }

@@ -21,7 +21,34 @@ class NavBar extends StatelessWidget {
             onTap: (){
               Navigator.pushNamed(context, '/reg_name_and_dp');
             },
+          ),
+          ListTile(
+            title: Text(
+              "Logout",
+              style: GoogleFonts.dmSans(
+                fontSize: 20.0,
+                color: Color(0xFF193669),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onTap: (){
+              Navigator.pushNamed(context, '/logout');
+            },
+          ),
+          ListTile(
+            title: Text(
+              "verification",
+              style: GoogleFonts.dmSans(
+                fontSize: 20.0,
+                color: Color(0xFF193669),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onTap: (){
+              Navigator.pushNamed(context, '/verification');
+            },
           )
+
 
         ],
       ),

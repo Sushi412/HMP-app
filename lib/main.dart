@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:heath_matthews_physio/screens/LogoutScreen.dart';
 import 'package:heath_matthews_physio/screens/excercise.dart';
 import 'package:heath_matthews_physio/screens/programsMy.dart';
 import 'package:heath_matthews_physio/screens/AdminScreen.dart';
@@ -11,17 +12,23 @@ import 'package:heath_matthews_physio/screens/main_screen.dart';
 import 'package:heath_matthews_physio/screens/myPrograms.dart';
 import 'package:heath_matthews_physio/screens/reg_name_and_dp.dart';
 import 'package:heath_matthews_physio/screens/register.dart';
+import 'package:heath_matthews_physio/screens/verificationPage.dart';
 
 import 'package:heath_matthews_physio/screens/workout-page.dart';
 import 'package:heath_matthews_physio/screens/workoutScreen.dart';
 
 
 import 'screens/splash_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
-  runApp(const MyApp());
+Future main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(
+    MaterialApp(home: MyApp()),
+  );
 }
-
+final navigatorKey=GlobalKey<NavigatorState>();
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -29,6 +36,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
       routes: {
@@ -50,9 +58,11 @@ class MyApp extends StatelessWidget {
         '/program':(context)=>program(),
 
         '/workout-page':(context)=>workoutScreen(),
-        '/exerciseScreen':(context)=>excerciseScreen(),
+        // '/exerciseScreen':(context)=>excerciseScreen(),
         '/exercise':(context)=>exercise(),
         '/workoutScreen':(context)=>workoutScreen1(),
+        '/logout':(context)=>logoutScreen(),
+        '/verification':(context)=>verificationPage(),
 
       },
       theme: ThemeData(
