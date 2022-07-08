@@ -4,7 +4,7 @@ import 'package:iconify_flutter/icons/ant_design.dart';
 import 'package:iconify_flutter/icons/bx.dart';
 
 import '../DynamicSize/size.dart';
-import '../NavBar.dart';
+import 'NavBar.dart';
 
 class program extends StatefulWidget {
   const program({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class _programState extends State<program> {
             SizedBox(height: DynamicSize.Faheight(40)),
             Container(
               padding:
-              EdgeInsets.symmetric(horizontal: DynamicSize.Fawidth(18)),
+                  EdgeInsets.symmetric(horizontal: DynamicSize.Fawidth(18)),
               height: DynamicSize.Faheight(48),
               decoration: BoxDecoration(
                 color: Color(0xFFF3F3F3),
@@ -114,6 +114,7 @@ class _programState extends State<program> {
     );
   }
 }
+
 List<Color> _fadeColorList = [
   Color.fromRGBO(210, 65, 110, 0.1),
   Color.fromRGBO(112, 66, 201, 0.1),
@@ -139,13 +140,14 @@ Widget programContainer(context, index) {
         borderRadius: BorderRadius.circular(DynamicSize.Faheight(20)),
       ),
       child: ListView(
+        physics: NeverScrollableScrollPhysics(),
         children: [
           Row(
             children: [
               Container(
                 width: DynamicSize.Fawidth(58),
                 padding:
-                EdgeInsets.symmetric(vertical: DynamicSize.Faheight(6)),
+                    EdgeInsets.symmetric(vertical: DynamicSize.Faheight(6)),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(DynamicSize.Faheight(20)),
@@ -173,7 +175,7 @@ Widget programContainer(context, index) {
               Container(
                 width: DynamicSize.Fawidth(51),
                 padding:
-                EdgeInsets.symmetric(vertical: DynamicSize.Faheight(6)),
+                    EdgeInsets.symmetric(vertical: DynamicSize.Faheight(6)),
                 decoration: BoxDecoration(
                   color: Color(0xFF329A4E),
                   borderRadius: BorderRadius.circular(DynamicSize.Faheight(20)),
@@ -273,15 +275,15 @@ Widget programContainer(context, index) {
                 width: DynamicSize.Fawidth(156),
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context,'/workoutScreen');
+                    Navigator.pushNamed(context, '/workoutScreen');
                   },
                   style: ButtonStyle(
                     backgroundColor:
-                    MaterialStateProperty.all(_DarkColorList[index % 3]),
+                        MaterialStateProperty.all(_DarkColorList[index % 3]),
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius:
-                        BorderRadius.circular(DynamicSize.Faheight(18)),
+                            BorderRadius.circular(DynamicSize.Faheight(18)),
                       ),
                     ),
                     splashFactory: InkRipple.splashFactory,
@@ -332,7 +334,7 @@ Widget programContainer(context, index) {
                     decoration: BoxDecoration(
                         color: Color(0xFFD9D9D9),
                         borderRadius:
-                        BorderRadius.circular(DynamicSize.Faheight(75)),
+                            BorderRadius.circular(DynamicSize.Faheight(75)),
                         boxShadow: [
                           BoxShadow(
                             color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -366,7 +368,7 @@ Widget programContainer(context, index) {
                         decoration: BoxDecoration(
                           color: Color(0xFFFF0909),
                           borderRadius:
-                          BorderRadius.circular(DynamicSize.Faheight(8)),
+                              BorderRadius.circular(DynamicSize.Faheight(8)),
                         ),
                         child: Center(
                           child: Iconify(
@@ -391,7 +393,7 @@ Widget programContainer(context, index) {
                     decoration: BoxDecoration(
                         color: Color(0xFFD9D9D9),
                         borderRadius:
-                        BorderRadius.circular(DynamicSize.Faheight(75)),
+                            BorderRadius.circular(DynamicSize.Faheight(75)),
                         boxShadow: [
                           BoxShadow(
                             color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -410,8 +412,7 @@ Widget programContainer(context, index) {
             ],
           ),
         ],
-      )
+      ),
     ),
   );
 }
-

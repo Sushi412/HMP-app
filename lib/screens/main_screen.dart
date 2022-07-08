@@ -25,7 +25,7 @@ class _mainScreenState extends State<mainScreen> {
                 children: <Widget>[
                   Image.asset('images/YOGA LADY ILLUSTRATION.png'),
                   new Container(
-                    padding: EdgeInsets.all(30),
+                    padding: EdgeInsets.all(DynamicSize.Azheight(25)),
                     child: new Center(
                       child: RichText(
                         text: TextSpan(
@@ -33,7 +33,7 @@ class _mainScreenState extends State<mainScreen> {
                           style: TextStyle(
                             fontSize: DynamicSize.Azheight(38.0),
                             fontWeight: FontWeight.w700,
-                            letterSpacing:  DynamicSize.Aaheight(0.5),
+                            letterSpacing: DynamicSize.Aaheight(0.5),
                             color: Color(0xFF1F2F70),
                             fontFamily: 'DMSans',
                           ),
@@ -52,7 +52,7 @@ class _mainScreenState extends State<mainScreen> {
         child: FloatingActionButton(
           backgroundColor: Color(0xFF1F2F70),
           onPressed: () {
-            Navigator.pushNamed(context, '/mainScreen2');
+            Navigator.pushReplacementNamed(context, '/mainScreen2');
           },
           child: const Icon(
             Icons.arrow_forward,

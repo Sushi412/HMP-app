@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heath_matthews_physio/NavBar.dart';
+import 'package:heath_matthews_physio/screens/NavBar.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:heath_matthews_physio/DynamicSize/size.dart';
 import 'package:iconify_flutter/icons/bx.dart';
@@ -285,7 +285,7 @@ Widget programContainer(context, index) {
                 width: DynamicSize.Fawidth(156),
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context,'/workout-page');
+                    Navigator.pushNamed(context, '/workout-page');
                   },
                   style: ButtonStyle(
                     backgroundColor:

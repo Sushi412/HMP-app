@@ -55,7 +55,7 @@ class _mainScreen2State extends State<mainScreen2> {
                     width: DynamicSize.Azwidth(325),
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pushNamed(context, '/loginScreen');
+                        Navigator.pushReplacementNamed(context, '/loginScreen');
                       },
                       style: ElevatedButton.styleFrom(
                           primary: Color(0xFF1F2F70),
@@ -77,7 +77,8 @@ class _mainScreen2State extends State<mainScreen2> {
                   height: DynamicSize.Azheight(50),
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/registerScreen');
+                      Navigator.pushReplacementNamed(
+                          context, '/registerScreen');
                     },
                     style: ElevatedButton.styleFrom(
                       primary: Colors.white,
@@ -103,52 +104,50 @@ class _mainScreen2State extends State<mainScreen2> {
         ),
       ),
 
-
 //     return  Scaffold(
 //         backgroundColor: Colors.white,
 
-
-        //                 Padding(
-        //                   padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 25.0),
-        //                   child: SizedBox(
-        //                      height: 50 ,
-        //                     width: 325,
-        //                     child: ElevatedButton(
-        //                       onPressed: () {
-        //                         Navigator.pushNamed(context, '/loginScreen');
-        //                       },
-        //                       style: ElevatedButton.styleFrom(
-        //                           primary: Color(0xFF1F2F70),
-        //                           shape: RoundedRectangleBorder(
-        //                               borderRadius: BorderRadius.circular(15)
-        //                           )
-        //                       ),
-        //                       child: Text('LOGIN', style: TextStyle(fontSize: 15.0, fontFamily: 'DMSans',color: Colors.white),
-        //                       ),),
-        //                   ),
-        //                 ),
-        //
-        //                 SizedBox(
-        //                   width: 325,
-        //                   height: 50,
-        //                   child: ElevatedButton(
-        //                       onPressed: () {
-        //                         Navigator.pushNamed(context, '/reg_name_and_dp');
-        //                       },
-        //                       style: ElevatedButton.styleFrom(
-        //                           primary: Colors.white,
-        //                           shape: RoundedRectangleBorder(
-        //                               borderRadius: BorderRadius.circular(15),
-        //                               side: BorderSide(color: Color(0xFF1F2F70))
-        //                           )
-        //                       ),
-        //                       child: Text('REGISTER', style: TextStyle(fontSize: 15.0, fontFamily: 'DMSans',color: Color(0xFF1F2F70)),
-        //                       )                       ),
-        //                 ),
-        //               ]),
-        //         )
-        //     )
-        // )
+      //                 Padding(
+      //                   padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 25.0),
+      //                   child: SizedBox(
+      //                      height: 50 ,
+      //                     width: 325,
+      //                     child: ElevatedButton(
+      //                       onPressed: () {
+      //                         Navigator.pushNamed(context, '/loginScreen');
+      //                       },
+      //                       style: ElevatedButton.styleFrom(
+      //                           primary: Color(0xFF1F2F70),
+      //                           shape: RoundedRectangleBorder(
+      //                               borderRadius: BorderRadius.circular(15)
+      //                           )
+      //                       ),
+      //                       child: Text('LOGIN', style: TextStyle(fontSize: 15.0, fontFamily: 'DMSans',color: Colors.white),
+      //                       ),),
+      //                   ),
+      //                 ),
+      //
+      //                 SizedBox(
+      //                   width: 325,
+      //                   height: 50,
+      //                   child: ElevatedButton(
+      //                       onPressed: () {
+      //                         Navigator.pushNamed(context, '/reg_name_and_dp');
+      //                       },
+      //                       style: ElevatedButton.styleFrom(
+      //                           primary: Colors.white,
+      //                           shape: RoundedRectangleBorder(
+      //                               borderRadius: BorderRadius.circular(15),
+      //                               side: BorderSide(color: Color(0xFF1F2F70))
+      //                           )
+      //                       ),
+      //                       child: Text('REGISTER', style: TextStyle(fontSize: 15.0, fontFamily: 'DMSans',color: Color(0xFF1F2F70)),
+      //                       )                       ),
+      //                 ),
+      //               ]),
+      //         )
+      //     )
+      // )
 
 //         body: Container(
 //             child: Center(
@@ -215,10 +214,6 @@ class _mainScreen2State extends State<mainScreen2> {
 //                 )
 //             )
 //         )
-
-
-
-
     );
   }
 }
