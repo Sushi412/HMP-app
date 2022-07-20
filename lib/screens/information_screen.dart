@@ -7,36 +7,6 @@ import 'package:heath_matthews_physio/services/userData.dart';
 import 'package:heath_matthews_physio/utils/showSnackBar.dart';
 import 'package:provider/provider.dart';
 
-Color _inactiveColor = Colors.white;
-Color _activeColor = Color(0xFFF0F2F4);
-Color _maleCardColor = _inactiveColor;
-Color _femaleCardColor = _inactiveColor;
-bool _visibiltyM = false;
-bool _visibiltyF = false;
-
-String? genderData = null;
-
-void _update(int gender) {
-  if (gender == 1) {
-    _maleCardColor = _activeColor;
-    _femaleCardColor = _inactiveColor;
-    _visibiltyM = true;
-    _visibiltyF = false;
-    genderData = 'M';
-    // print('Male Selected');
-  }
-  if (gender == 2) {
-    _femaleCardColor = _activeColor;
-    _maleCardColor = _inactiveColor;
-    _visibiltyM = false;
-    _visibiltyF = true;
-    genderData = 'F';
-    // print('Female Selected!');
-  }
-}
-
-double currentSliderValue = 20;
-
 class informationScreen extends StatefulWidget {
   const informationScreen({Key? key}) : super(key: key);
 
@@ -45,6 +15,36 @@ class informationScreen extends StatefulWidget {
 }
 
 class _informationScreenState extends State<informationScreen> {
+  Color _inactiveColor = Colors.white;
+  Color _activeColor = Color(0xFFF0F2F4);
+  Color _maleCardColor = Colors.white;
+  Color _femaleCardColor = Colors.white;
+  bool _visibiltyM = false;
+  bool _visibiltyF = false;
+
+  String? genderData = null;
+
+  void _update(int gender) {
+    if (gender == 1) {
+      _maleCardColor = _activeColor;
+      _femaleCardColor = _inactiveColor;
+      _visibiltyM = true;
+      _visibiltyF = false;
+      genderData = 'M';
+      // print('Male Selected');
+    }
+    if (gender == 2) {
+      _femaleCardColor = _activeColor;
+      _maleCardColor = _inactiveColor;
+      _visibiltyM = false;
+      _visibiltyF = true;
+      genderData = 'F';
+      // print('Female Selected!');
+    }
+  }
+
+  double currentSliderValue = 20;
+
   // double _currentSliderValue = 20;
   String _hstatus = '50';
   Color _statusColor = Color(0xFF2F3F70);
@@ -424,7 +424,9 @@ class _informationScreenState extends State<informationScreen> {
                             if (flag) {
                               final firebaseUser =
                                   Provider.of<User?>(context, listen: false);
-                              userData(uid: firebaseUser!.uid.toString())
+                              userData(
+                                      uid: firebaseUser!.uid.toString(),
+                                      email: firebaseUser.email!)
                                   .uploadUserData(
                                       context: context,
                                       firstName: firstName.toString(),

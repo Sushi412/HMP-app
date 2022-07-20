@@ -18,8 +18,34 @@ class NavBar extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onTap: (){
+            onTap: () {
               Navigator.pushNamed(context, '/reg_name_and_dp');
+            },
+          ),
+          ListTile(
+            title: Text(
+              "My Programs",
+              style: GoogleFonts.dmSans(
+                fontSize: 20.0,
+                color: Color(0xFF193669),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onTap: () {
+              Navigator.pushNamed(context, '/program');
+            },
+          ),
+          ListTile(
+            title: Text(
+              "Admin Programs",
+              style: GoogleFonts.dmSans(
+                fontSize: 20.0,
+                color: Color(0xFF193669),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            onTap: () {
+              Navigator.pushNamed(context, '/adminScreen');
             },
           ),
           ListTile(
@@ -31,7 +57,7 @@ class NavBar extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onTap: (){
+            onTap: () {
               Navigator.pushNamed(context, '/logout');
             },
           ),
@@ -44,15 +70,12 @@ class NavBar extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            onTap: (){
+            onTap: () {
               Navigator.pushNamed(context, '/verification');
             },
           )
-
-
         ],
       ),
-
     );
   }
 }

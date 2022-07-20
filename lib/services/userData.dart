@@ -7,7 +7,8 @@ import 'dart:developer' as developer;
 
 class userData {
   final String uid;
-  userData({required this.uid});
+  final String email;
+  userData({required this.uid, required this.email});
 
   //Collection Reference
   final CollectionReference userCollection =
@@ -44,6 +45,7 @@ class userData {
         "first_name": firstName,
         "last_name": lastName,
         "contact_no": phoneNo,
+        'email': email,
         "age": age,
         "gender": gender,
         "height": height,

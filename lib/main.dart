@@ -5,7 +5,6 @@ import 'package:heath_matthews_physio/screens/LogoutScreen.dart';
 import 'package:heath_matthews_physio/screens/excercise.dart';
 import 'package:heath_matthews_physio/screens/programsMy.dart';
 import 'package:heath_matthews_physio/screens/AdminScreen.dart';
-import 'package:heath_matthews_physio/screens/excerciseScreen.dart';
 import 'package:heath_matthews_physio/screens/information_screen.dart';
 import 'package:heath_matthews_physio/screens/login.dart';
 import 'package:heath_matthews_physio/screens/mainScreen2.dart';
@@ -58,9 +57,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           // When navigating to the "/" route, build the FirstScreen widget.
-          // '/': (context) => const Splash(),
-          '/': (context) => const adminScreen(),
-          // '/': (context) => reg_name_and_dp(),
+          '/': (context) => const Splash(),
+          // '/': (context) => const workoutScreen(),
           // When navigating to the "/second" route, build the SecondScreen widget.
           '/wrapper': (context) => wrapper(),
           '/mainScreen': (context) => const mainScreen(),
@@ -68,13 +66,11 @@ class MyApp extends StatelessWidget {
           '/loginScreen': (context) => const Login(),
           '/registerScreen': (context) => const Register(),
           '/informationScreen': (context) => const informationScreen(),
-          '/mainScreen2': (context) => const mainScreen2(),
           '/reg_name_and_dp': (context) => reg_name_and_dp(),
           '/myPrograms': (context) => const myPrograms(),
           '/adminScreen': (context) => adminScreen(),
           '/program': (context) => program(),
           '/workout-page': (context) => workoutScreen(),
-          // '/exerciseScreen':(context)=>excerciseScreen(),
           '/exercise': (context) => exercise(),
           '/workoutScreen': (context) => workoutScreen1(),
           '/logout': (context) => logoutScreen(),

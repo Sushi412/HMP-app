@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:gradient_progress_indicator/widget/gradient_progress_indicator_widget.dart';
 import 'package:heath_matthews_physio/screens/NavBar.dart';
-import 'package:heath_matthews_physio/utils/loadingspinner.dart';
 import 'package:heath_matthews_physio/utils/showSnackBar.dart';
-
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 import '../DynamicSize/size.dart';
 
 class adminScreen extends StatefulWidget {
@@ -18,41 +19,19 @@ class adminScreen extends StatefulWidget {
 
 class _adminScreenState extends State<adminScreen> {
   get svalue => null;
-
-  List<String> _locations = [
-    '01',
-    '02',
-    '03',
-    '04',
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
-    '11',
-    '12',
-    '13',
-    '14',
-    '15',
-    '16',
-    '17',
-    '18',
-    '19',
-    '20'
-  ]; // Option 2
-  String? _selectedLocation; // Option 2
   List<String> _healthCoach = [
     'Heath Matthew',
-    'Aayushi Chauhan',
-    'hardik chauhan'
-  ]; // Option 2
-  String? _selectedheathCoach; // Option 2
-  DateTime selectedDate = DateTime.now();
-  _buildMaterialDatePicker(BuildContext context) async {
+  ];
+  bool _loading = true;
+
+  List<String?>? _day;
+  List<DateTime>? _selectedDate;
+  List<String?>? _selectedheathCoach;
+
+  _buildMaterialDatePicker(BuildContext context, int index) async {
     final DateTime? picked = await showDatePicker(
       context: context,
-      initialDate: selectedDate,
+      initialDate: _selectedDate![index],
       firstDate: DateTime(2000),
       lastDate: DateTime(2025),
       initialEntryMode: DatePickerEntryMode.calendar,
@@ -65,103 +44,131 @@ class _adminScreenState extends State<adminScreen> {
       fieldLabelText: 'Start date',
       fieldHintText: 'Year/Month/Date',
     );
-    if (picked != null && picked != selectedDate)
+    if (picked != null && picked != _selectedDate![index])
       setState(() {
-        selectedDate = picked;
+        _selectedDate![index] = picked;
       });
   }
 
-  Stream<QuerySnapshot>? _programs;
-  _getprograms() {
+  List<QueryDocumentSnapshot> _programs = [];
+  Future<void> _getprograms() async {
     final CollectionReference programsCollection =
         FirebaseFirestore.instance.collection('programs');
-    _programs = programsCollection.snapshots();
+    var records = await programsCollection.get();
+    _programs = await List.from(records.docs.map((docs) => docs));
   }
 
   @override
   void initState() {
-    _getprograms();
     super.initState();
+    _getprograms().then((value) {
+      _day = List.filled(_programs.length, null, growable: true);
+      _selectedheathCoach = List.filled(_programs.length, null, growable: true);
+      _selectedDate =
+          List.filled(_programs.length, DateTime.now(), growable: true);
+      setState(() {
+        _loading = false;
+      });
+    });
+    // n = _programs.length;
+    // print(
+    //     "----------No.of Programs : ${n}\nPrograms : ${_programs}--------------");
+    // _day = List.filled(n, null, growable: true);
+    // _selectedheathCoach = List.filled(n, null, growable: true);
+    // _selectedDate = List.filled(n, DateTime.now(), growable: true);
+    // super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        centerTitle: true,
+    if (_loading)
+      return Scaffold(
         backgroundColor: Colors.white,
-        elevation: 0,
-        iconTheme: IconThemeData(color: Color(0xFF2F3F70)),
-        title: Text(
-          "Admin Programs",
-          style: GoogleFonts.dmSans(
-            fontSize: DynamicSize.Aaheight(24),
-            color: Color(0xFF193669),
-            fontWeight: FontWeight.bold,
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          iconTheme: IconThemeData(color: Color(0xFF2F3F70)),
+          title: Text(
+            "Admin Programs",
+            style: GoogleFonts.dmSans(
+              fontSize: DynamicSize.Aaheight(24),
+              color: Color(0xFF193669),
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
-      ),
-      drawer: NavBar(),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: _programs,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasError) {
-            return SnackBar(content: Text(snapshot.error.toString()));
-          }
-
-          if (snapshot.connectionState == ConnectionState.active) {
-            QuerySnapshot querySnapshot = snapshot.data;
-            List<QueryDocumentSnapshot> listQueryDocumentSnapshot =
-                querySnapshot.docs;
-            return Column(
-              children: [
-                Expanded(
-                  child: Container(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: listQueryDocumentSnapshot.length,
-                      itemBuilder: (context, index) {
-                        QueryDocumentSnapshot document =
-                            listQueryDocumentSnapshot[index];
-                        return _program(context, document);
-                      },
-                    ),
-                  ),
-                ),
-              ],
-            );
-          }
-          return Center(
-            child: GradientProgressIndicator(
-              radius: 40,
-              duration: 1,
-              strokeWidth: 6,
-              gradientStops: [
-                0.0,
-                1,
-              ],
-              gradientColors: [
-                Color.fromRGBO(58, 225, 128, 0),
-                Color.fromRGBO(25, 54, 105, 1),
-              ],
-              child: SizedBox.shrink(),
+        drawer: NavBar(),
+        body: Center(
+          child: GradientProgressIndicator(
+            radius: 40,
+            duration: 1,
+            strokeWidth: 6,
+            gradientStops: [
+              0.0,
+              1,
+            ],
+            gradientColors: [
+              Color.fromRGBO(58, 225, 128, 0),
+              Color.fromRGBO(25, 54, 105, 1),
+            ],
+            child: SizedBox.shrink(),
+          ),
+        ),
+      );
+    else {
+      return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          iconTheme: IconThemeData(color: Color(0xFF2F3F70)),
+          title: Text(
+            "Admin Programs",
+            style: GoogleFonts.dmSans(
+              fontSize: DynamicSize.Aaheight(24),
+              color: Color(0xFF193669),
+              fontWeight: FontWeight.bold,
             ),
-          );
-        },
-      ),
-    );
+          ),
+        ),
+        drawer: NavBar(),
+        body: Column(
+          children: [
+            Expanded(
+              child: Container(
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: _programs.length,
+                  itemBuilder: (context, index) {
+                    QueryDocumentSnapshot document = _programs[index];
+                    return _program(context, index, document);
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
   }
 
-  Widget _program(BuildContext context, QueryDocumentSnapshot document) {
+  Widget _program(
+      BuildContext context, int index, QueryDocumentSnapshot document) {
     List<String> title = document['name'].toString().split(" ");
     String textTitle = title.sublist(0, title.length ~/ 2).join(' ') +
         "\n" +
         title.sublist(title.length ~/ 2).join(' ');
+
+    List<String> _locations = [];
+    for (int i = 1; i <= document['no_of_days']; i++) {
+      _locations.add(i.toString());
+    }
     return Padding(
       padding: EdgeInsets.all(DynamicSize.Aaheight(20)),
       child: Container(
-        height: DynamicSize.Aaheight(500),
+        // height: DynamicSize.Aaheight(500),
         width: double.infinity,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(DynamicSize.Aaheight(24)),
@@ -249,10 +256,10 @@ class _adminScreenState extends State<adminScreen> {
                             ),
                           ),
                         ), // Not necessary for Option 1
-                        value: _selectedLocation,
+                        value: _day?[index],
                         onChanged: (newValue) {
                           setState(() {
-                            _selectedLocation = newValue.toString();
+                            _day?[index] = newValue.toString();
                           });
                         },
                         items: _locations.map((location) {
@@ -277,7 +284,7 @@ class _adminScreenState extends State<adminScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      _buildMaterialDatePicker(context);
+                      _buildMaterialDatePicker(context, index);
                     },
                     child: Container(
                       padding: EdgeInsets.symmetric(
@@ -290,7 +297,8 @@ class _adminScreenState extends State<adminScreen> {
                                 vertical: DynamicSize.Aaheight(18),
                               ),
                               child: Text(
-                                  "${selectedDate.toLocal()}".split(' ')[0],
+                                  "${_selectedDate![index].toLocal()}"
+                                      .split(' ')[0],
                                   style: GoogleFonts.dmSans(
                                       fontSize: DynamicSize.Aaheight(12),
                                       color: Color(0xFF2F3F70))),
@@ -328,10 +336,10 @@ class _adminScreenState extends State<adminScreen> {
                       style: GoogleFonts.dmSans(
                           fontSize: DynamicSize.Aaheight(12)),
                     ), // Not necessary for Option 1
-                    value: _selectedheathCoach,
+                    value: _selectedheathCoach?[index],
                     onChanged: (newValue) {
                       setState(() {
-                        _selectedheathCoach = newValue.toString();
+                        _selectedheathCoach?[index] = newValue.toString();
                       });
                     },
                     items: _healthCoach.map((location) {
@@ -358,8 +366,35 @@ class _adminScreenState extends State<adminScreen> {
                 width: double.infinity,
                 height: DynamicSize.Aaheight(50),
                 child: TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/program');
+                  onPressed: () async {
+                    if (_selectedheathCoach?[index] == null &&
+                        _day?[index] == null)
+                      ShowSnackBar(context, "Fields cannot be empty");
+                    else if (_selectedheathCoach?[index] == null)
+                      ShowSnackBar(context, 'Select the health coach');
+                    else if (_day?[index] == null)
+                      ShowSnackBar(context, 'Select the day to start with');
+                    else {
+                      final firebaseUser =
+                          Provider.of<User?>(context, listen: false);
+                      CollectionReference myprograms = FirebaseFirestore
+                          .instance
+                          .collection('users')
+                          .doc(firebaseUser!.uid.toString())
+                          .collection('myprograms');
+                      var ref = await myprograms.get();
+                      int n = ref.docs.length;
+                      await myprograms.doc('${n + 1}').set({
+                        'programId': document.id,
+                        'startDate': DateFormat('dd-MM-yyyy')
+                            .format(_selectedDate![index])
+                            .toString(),
+                        'startDay': int.parse(_day![index]!),
+                        'active': true,
+                        'physio': _selectedheathCoach![index],
+                      });
+                      ShowSnackBar(context, 'Program added successfully.');
+                    }
                   },
                   style: TextButton.styleFrom(
                       backgroundColor: Color(0xFF193669),

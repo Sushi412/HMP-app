@@ -91,4 +91,12 @@ class FirebaseAuthMethods {
     }
     return null;
   }
+
+  Future signOut(context) async {
+    try {
+      await _auth.signOut();
+    } on FirebaseAuthException catch (e) {
+      ShowSnackBar(context, e.message!);
+    }
+  }
 }
