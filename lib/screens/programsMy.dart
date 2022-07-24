@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gradient_progress_indicator/widget/gradient_progress_indicator_widget.dart';
 import 'package:iconify_flutter/iconify_flutter.dart';
 import 'package:iconify_flutter/icons/ant_design.dart';
 import 'package:iconify_flutter/icons/bx.dart';
-
+import 'package:provider/provider.dart';
 import '../DynamicSize/size.dart';
-import '../NavBar.dart';
+import 'NavBar.dart';
 
 class program extends StatefulWidget {
   const program({Key? key}) : super(key: key);
@@ -14,6 +17,24 @@ class program extends StatefulWidget {
 }
 
 class _programState extends State<program> {
+  List<QueryDocumentSnapshot> _myPrograms = [];
+  List<DocumentSnapshot> _adminPrograms = [];
+  Future<void> getMyProgramDocs() async {
+    final firebaseUser = context.watch<User?>();
+
+    var records = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(firebaseUser!.uid)
+        .collection('myprograms')
+        .get();
+    _myPrograms = List.from(records.docs.map((doc) => doc));
+    _adminPrograms = await Future.wait(List.from(_myPrograms.map((doc) async =>
+        await FirebaseFirestore.instance
+            .collection('programs')
+            .doc(doc['programId'])
+            .get())));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +65,7 @@ class _programState extends State<program> {
             SizedBox(height: DynamicSize.Faheight(40)),
             Container(
               padding:
-              EdgeInsets.symmetric(horizontal: DynamicSize.Fawidth(18)),
+                  EdgeInsets.symmetric(horizontal: DynamicSize.Fawidth(18)),
               height: DynamicSize.Faheight(48),
               decoration: BoxDecoration(
                 color: Color(0xFFF3F3F3),
@@ -97,16 +118,48 @@ class _programState extends State<program> {
 
             //List
             SizedBox(height: DynamicSize.Faheight(24)),
-            Expanded(
-              child: Container(
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 6,
-                  itemBuilder: (context, index) {
-                    return programContainer(context, index);
-                  },
-                ),
-              ),
+            FutureBuilder<void>(
+              future: getMyProgramDocs(),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.done) {
+                  return Expanded(
+                    child: Container(
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: _myPrograms.length,
+                        itemBuilder: (context, index) {
+                          QueryDocumentSnapshot document = _myPrograms[index];
+                          DocumentSnapshot adminProgramDoc =
+                              _adminPrograms[index];
+                          return programContainer(
+                              context, index, document, adminProgramDoc);
+                        },
+                      ),
+                    ),
+                  );
+                } else {
+                  return Expanded(
+                    child: Container(
+                      child: Center(
+                        child: GradientProgressIndicator(
+                          radius: 40,
+                          duration: 1,
+                          strokeWidth: 6,
+                          gradientStops: [
+                            0.0,
+                            1,
+                          ],
+                          gradientColors: [
+                            Color.fromRGBO(58, 225, 128, 0),
+                            Color.fromRGBO(25, 54, 105, 1),
+                          ],
+                          child: SizedBox.shrink(),
+                        ),
+                      ),
+                    ),
+                  );
+                }
+              },
             ),
           ],
         ),
@@ -114,6 +167,7 @@ class _programState extends State<program> {
     );
   }
 }
+
 List<Color> _fadeColorList = [
   Color.fromRGBO(210, 65, 110, 0.1),
   Color.fromRGBO(112, 66, 201, 0.1),
@@ -125,7 +179,13 @@ List<Color> _DarkColorList = [
   Color.fromRGBO(13, 177, 173, 1),
 ];
 
-Widget programContainer(context, index) {
+Widget programContainer(BuildContext context, int index,
+    QueryDocumentSnapshot document, DocumentSnapshot adminProgramDoc) {
+  List<String> title = adminProgramDoc['name'].toString().split(" ");
+  String textTitle = title.sublist(0, title.length ~/ 2).join(' ') +
+      "\n" +
+      title.sublist(title.length ~/ 2).join(' ');
+
   return Padding(
     padding: EdgeInsets.only(bottom: DynamicSize.Faheight(24)),
     child: Container(
@@ -139,13 +199,14 @@ Widget programContainer(context, index) {
         borderRadius: BorderRadius.circular(DynamicSize.Faheight(20)),
       ),
       child: ListView(
+        physics: NeverScrollableScrollPhysics(),
         children: [
           Row(
             children: [
               Container(
                 width: DynamicSize.Fawidth(58),
                 padding:
-                EdgeInsets.symmetric(vertical: DynamicSize.Faheight(6)),
+                    EdgeInsets.symmetric(vertical: DynamicSize.Faheight(6)),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(DynamicSize.Faheight(20)),
@@ -159,7 +220,7 @@ Widget programContainer(context, index) {
                 ),
                 child: Center(
                   child: Text(
-                    '63 Days',
+                    '${adminProgramDoc['no_of_days'] - document['startDay'] + 1} Days',
                     style: TextStyle(
                       fontFamily: 'DMSans',
                       fontSize: DynamicSize.Faheight(10),
@@ -173,9 +234,11 @@ Widget programContainer(context, index) {
               Container(
                 width: DynamicSize.Fawidth(51),
                 padding:
-                EdgeInsets.symmetric(vertical: DynamicSize.Faheight(6)),
+                    EdgeInsets.symmetric(vertical: DynamicSize.Faheight(6)),
                 decoration: BoxDecoration(
-                  color: Color(0xFF329A4E),
+                  color: (document['active']
+                      ? Color(0xFF329A4E)
+                      : Color(0xFFF01F50)),
                   borderRadius: BorderRadius.circular(DynamicSize.Faheight(20)),
                   boxShadow: [
                     BoxShadow(
@@ -187,7 +250,7 @@ Widget programContainer(context, index) {
                 ),
                 child: Center(
                   child: Text(
-                    'Active',
+                    (document['active'] ? 'Active' : 'Expired'),
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'DMSans',
@@ -204,7 +267,8 @@ Widget programContainer(context, index) {
           Padding(
             padding: EdgeInsets.symmetric(horizontal: DynamicSize.Fawidth(5)),
             child: Text(
-              'Core & Back\nFitness Program',
+              // 'Hello',
+              textTitle,
               style: TextStyle(
                 color: _DarkColorList[index % 3],
                 fontFamily: 'DMSans',
@@ -229,7 +293,7 @@ Widget programContainer(context, index) {
                 ),
               ),
               Text(
-                'Dr. Heath Matthew',
+                'Dr. ${document['physio']}',
                 style: TextStyle(
                   color: _DarkColorList[index % 3],
                   fontFamily: 'DMSans',
@@ -255,7 +319,7 @@ Widget programContainer(context, index) {
                 ),
               ),
               Text(
-                '10-06-2022',
+                document['startDate'],
                 style: TextStyle(
                   color: _DarkColorList[index % 3],
                   fontFamily: 'DMSans',
@@ -273,15 +337,18 @@ Widget programContainer(context, index) {
                 width: DynamicSize.Fawidth(156),
                 child: TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context,'/workoutScreen');
+                    Navigator.pushNamed(context, '/workout-page', arguments: {
+                      "adminProgramId": document['programId'],
+                      "myProgramId": document.id
+                    });
                   },
                   style: ButtonStyle(
                     backgroundColor:
-                    MaterialStateProperty.all(_DarkColorList[index % 3]),
+                        MaterialStateProperty.all(_DarkColorList[index % 3]),
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
                         borderRadius:
-                        BorderRadius.circular(DynamicSize.Faheight(18)),
+                            BorderRadius.circular(DynamicSize.Faheight(18)),
                       ),
                     ),
                     splashFactory: InkRipple.splashFactory,
@@ -332,7 +399,7 @@ Widget programContainer(context, index) {
                     decoration: BoxDecoration(
                         color: Color(0xFFD9D9D9),
                         borderRadius:
-                        BorderRadius.circular(DynamicSize.Faheight(75)),
+                            BorderRadius.circular(DynamicSize.Faheight(75)),
                         boxShadow: [
                           BoxShadow(
                             color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -366,7 +433,7 @@ Widget programContainer(context, index) {
                         decoration: BoxDecoration(
                           color: Color(0xFFFF0909),
                           borderRadius:
-                          BorderRadius.circular(DynamicSize.Faheight(8)),
+                              BorderRadius.circular(DynamicSize.Faheight(8)),
                         ),
                         child: Center(
                           child: Iconify(
@@ -391,7 +458,7 @@ Widget programContainer(context, index) {
                     decoration: BoxDecoration(
                         color: Color(0xFFD9D9D9),
                         borderRadius:
-                        BorderRadius.circular(DynamicSize.Faheight(75)),
+                            BorderRadius.circular(DynamicSize.Faheight(75)),
                         boxShadow: [
                           BoxShadow(
                             color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -410,8 +477,7 @@ Widget programContainer(context, index) {
             ],
           ),
         ],
-      )
+      ),
     ),
   );
 }
-

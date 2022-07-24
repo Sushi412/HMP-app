@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="23" height="30" viewBox="0 0 23 30" xml:space="preserve">
+<desc>Created with Fabric.js 4.6.0</desc>
+<defs>
+</defs>
+<g transform="matrix(1 0 0 1 11.25 15)" id="bXRpkhPDwDV2lOdv5zx6c"  >
+<linearGradient id="SVGID_0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(1 0 0 1 0 0)"  x1="11.25" y1="-0.00114059" x2="11.25" y2="30">
+<stop offset="0%" style="stop-color:rgb(251,188,5);stop-opacity: 1"/>
+<stop offset="100%" style="stop-color:rgb(255,9,9);stop-opacity: 1"/>
+</linearGradient>
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: url(#SVGID_0); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke"  transform=" translate(-11.25, -15)" d="M 22.5 18.6973 C 22.5 24.9551 17.4551 30 11.25 30 C 5.04492 30 0 24.9533 0 18.75 C 0 15.3123 1.63008 12.4922 3.19746 10.8926 C 4.07461 9.91992 5.625 10.5352 5.625 11.8066 L 5.625 16.8164 C 5.625 18.8771 7.26387 20.5957 9.32578 20.6215 C 11.4199 20.6543 13.125 18.9609 13.125 16.875 C 13.125 11.7188 2.86523 11.243 10.0693 0.632812 C 10.8604 -0.522657 12.6562 0.00175753 12.6562 1.39629 C 12.6035 7.44141 22.5 8.77149 22.5 18.6973 Z" stroke-linecap="round" />
+</g>
+</svg>

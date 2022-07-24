@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:heath_matthews_physio/services/firebase_auth_methods.dart';
+import 'package:provider/provider.dart';
 
 import '../DynamicSize/size.dart';
+
 class logoutScreen extends StatelessWidget {
   const logoutScreen({Key? key}) : super(key: key);
 
@@ -13,37 +15,37 @@ class logoutScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("are you sure you want to log out?",style: GoogleFonts.dmSans(
-                fontSize: 20,
-                color: Color(0xFF2F3F70),
-                fontWeight: FontWeight.w500
-            ),),
+            Text(
+              "are you sure you want to log out?",
+              style: GoogleFonts.dmSans(
+                  fontSize: 20,
+                  color: Color(0xFF2F3F70),
+                  fontWeight: FontWeight.w500),
+            ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: DynamicSize.Fawidth(15)),
+              padding:
+                  EdgeInsets.symmetric(horizontal: DynamicSize.Fawidth(15)),
               child: SizedBox(
                 width: double.infinity,
                 height: DynamicSize.Faheight(50),
                 child: TextButton(
-                  onPressed: ()  {
-                    FirebaseAuth.instance.signOut().then((_){
-                    Navigator.pushNamed(context, '/mainScreen');
-
-                  });
-                    },
-
+                  onPressed: () async {
+                    context.read<FirebaseAuthMethods>().signOut(context);
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/mainScreen', (route) => false);
+                  },
 
                   // Navigator.pushNamedAndRemoveUntil(
                   // context, '/adminScreen', (route) => false),
-
 
                   style: TextButton.styleFrom(
                       backgroundColor: Color(0xFF193669),
                       shape: RoundedRectangleBorder(
                         borderRadius:
-                        BorderRadius.circular(DynamicSize.Faheight(15)),
+                            BorderRadius.circular(DynamicSize.Faheight(15)),
                       )
-                    // padding: EdgeInsets.symmetric(horizontal: 1),
-                  ),
+                      // padding: EdgeInsets.symmetric(horizontal: 1),
+                      ),
                   child: Text(
                     'SIGN OUT',
                     style: TextStyle(
